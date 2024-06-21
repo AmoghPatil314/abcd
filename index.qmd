@@ -1,0 +1,31 @@
+---
+title: "Index"
+execute:
+  echo: False
+  warning: FALSE
+---
+
+```{r,message=FALSE}
+library(tidyverse)
+library(scales)
+library(ggbeeswarm)
+library(plotly)
+x<-read_csv(file="./Mall_Customers.csv")
+```
+
+```{r}
+summary(x)
+plot <- x |> 
+  ggplot(aes(x = Age, color = Gender, fill = Gender)) +
+  geom_histogram(alpha = 0.5) +
+  labs(title = "Age Distribution by Gender", x = "Age", y = "Count") +
+  theme_minimal()
+
+# Convert ggplot object to plotly object
+plotly_plot <- ggplotly(plot)
+
+# Display the interactive plot
+plotly_plot
+```
+
+
